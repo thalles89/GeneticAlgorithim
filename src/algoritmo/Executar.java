@@ -436,7 +436,7 @@ public class Executar {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		List<Produto> listaProdutos = new ArrayList<>();
 
-//		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/genalgor", "root", "root");
 		Statement stmt = conn.createStatement();
