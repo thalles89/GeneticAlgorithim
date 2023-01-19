@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AlgoritmoGenetico {
     Configuration configuration;
-    private List<Chromosome> melhoresCromossomos;
+    private final List<Chromosome> melhoresCromossomos;
     public List<Produto> productList = new ArrayList<>();
     private Double limit = 5.0;
     private IChromosome melhor;

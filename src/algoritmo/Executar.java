@@ -9,27 +9,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Classe usada como MODEL (MVC)
- *
- * @author Thalles
- */
-
 public class Executar {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         List<Produto> listaProdutos = new ArrayList<>();
 
-        Class.forName("com.mysql.jdbc.Driver");
-
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/genalgor", "root", "root");
-        Statement stmt = conn.createStatement();
-        ResultSet result = stmt.executeQuery("SELECT nome, valor, espaco, quantidade FROM produtos");
+        ResultSet result = getDataProductSet();
 
         while (result.next()) {
             for (int i = 0; i < result.getInt("quantidade"); i++) {
-                listaProdutos.add(new Produto(result.getString("nome"), result.getDouble("valor"), result.getDouble("espaco")));
+                listaProdutos.add(new Produto(result.getString("nome"),
+                        result.getDouble("valor"), result.getDouble("espaco")));
             }
         }
 
@@ -62,5 +52,14 @@ public class Executar {
         RefineryUtilities.centerFrameOnScreen(g);
         g.setVisible(true);
 
+    }
+
+    private static ResultSet getDataProductSet() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/genalgor", "root", "root");
+        Statement stmt = conn.createStatement();
+        ResultSet result = stmt.executeQuery("SELECT nome, valor, espaco, quantidade FROM produtos");
+        return result;
     }
 }

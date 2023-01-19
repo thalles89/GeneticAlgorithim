@@ -1,7 +1,6 @@
 package algoritmo.model;
 
 public class Produto {
-
     private String nome;
     private Double valor;
     private Double volume;

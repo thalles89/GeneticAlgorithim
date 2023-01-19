@@ -21,19 +21,23 @@ public class Individuo implements Comparable<Individuo> {
     private List<Double> espacos = new ArrayList<>();
     private List<Double> valores = new ArrayList<>();
     private List<String> cromossomo = new ArrayList<>(); // aqui estara contida a solucao
-    private Double limiteEspaco;
+    private final Double limiteEspaco;
     private Double notaAvaliacao;
     private Double espacoUsado;
     private int geracao;
 
-    public Individuo(List<Double> espacos2, List<Double> valores2, Double limiteEspaco) {
-        this.espacos = espacos2;
-        this.valores = valores2;
+    public Individuo(List<Double> espacos, List<Double> valores, Double limiteEspaco) {
+        this.espacos = espacos;
+        this.valores = valores;
         this.limiteEspaco = limiteEspaco;
         this.notaAvaliacao = 0.0;
         this.espacoUsado = 0.0;
         this.geracao = 0;
 
+        initValues();
+    }
+
+    private void initValues() {
         for (int i = 0; i < this.espacos.size(); i++) {
             if (Math.random() < 0.5) {
                 this.cromossomo.add("0");
@@ -44,7 +48,8 @@ public class Individuo implements Comparable<Individuo> {
     }
 
     /**
-     * Função fitness Função de avaliação do cromossomo
+     * Função fitness
+     * Função de avaliação do cromossomo
      * <p>
      * nota       é a pontuação da funçao, somatorio dos valores dos produtos
      * somaEspaco é o somatorio dos volumes dos produtos
@@ -71,20 +76,19 @@ public class Individuo implements Comparable<Individuo> {
         espacoUsado = somaEspaco;
     }
 
-    @SuppressWarnings("unchecked")
     public List<Individuo> crossOver(Individuo outroIndividuo) {
+
         int corte = (int) Math.round(Math.random() * this.cromossomo.size());
-        @SuppressWarnings("rawtypes")
-        List filho1 = new ArrayList<>();
+
+        List<String> filho1 = new ArrayList<>();
         filho1.addAll(outroIndividuo.getCromossomo().subList(0, corte));
         filho1.addAll(this.cromossomo.subList(corte, this.cromossomo.size()));
 
-        @SuppressWarnings("rawtypes")
-        List filho2 = new ArrayList<>();
+        List<String> filho2 = new ArrayList<>();
         filho2.addAll(this.cromossomo.subList(0, corte));
         filho2.addAll(outroIndividuo.getCromossomo().subList(corte, this.cromossomo.size()));
 
-        List<Individuo> filhos = new ArrayList<Individuo>();
+        List<Individuo> filhos = new ArrayList<>();
         filhos.add(new Individuo(espacos, valores, limiteEspaco));
         filhos.add(new Individuo(espacos, valores, limiteEspaco));
 
@@ -93,12 +97,11 @@ public class Individuo implements Comparable<Individuo> {
 
         filhos.get(0).setGeracao(this.geracao + 1);
         filhos.get(1).setGeracao(this.geracao + 1);
+
         return filhos;
     }
 
     public Individuo mutacao(Double taxaMutacao) {
-//		System.out.println("Antes da mutação " + this.getCromossomo());
-
         for (int i = 0; i < this.getCromossomo().size(); i++) {
             if (Math.random() < taxaMutacao) {
                 if (this.cromossomo.get(i).equals("1")) {
@@ -112,29 +115,10 @@ public class Individuo implements Comparable<Individuo> {
         return this;
     }
 
-    public List<Double> getEspacos() {
-        return espacos;
-    }
-
-    public void setEspacos(List<Double> espacos) {
-        this.espacos = espacos;
-    }
-
     public Double getEspacoUsado() {
         return espacoUsado;
     }
 
-    public void setEspacoUsado(Double espacoUsado) {
-        this.espacoUsado = espacoUsado;
-    }
-
-    public List<Double> getValores() {
-        return valores;
-    }
-
-    public void setValores(List<Double> valores) {
-        this.valores = valores;
-    }
 
     public List<String> getCromossomo() {
         return cromossomo;
@@ -144,21 +128,11 @@ public class Individuo implements Comparable<Individuo> {
         this.cromossomo = cromossomo;
     }
 
-    public Double getLimiteEspaco() {
-        return limiteEspaco;
-    }
-
-    public void setLimiteEspaco(Double limiteEspaco) {
-        this.limiteEspaco = limiteEspaco;
-    }
 
     public Double getNotaAvaliacao() {
         return notaAvaliacao;
     }
 
-    public void setNotaAvaliacao(Double notaAvaliacao) {
-        this.notaAvaliacao = notaAvaliacao;
-    }
 
     public int getGeracao() {
         return geracao;
@@ -170,14 +144,7 @@ public class Individuo implements Comparable<Individuo> {
 
     @Override
     public int compareTo(Individuo ind) {
-
-        if (this.notaAvaliacao > ind.getNotaAvaliacao()) {
-            return -1;
-        }
-        if (this.notaAvaliacao < ind.getNotaAvaliacao()) {
-            return 1;
-        }
-        return 0;
+        return ind.getNotaAvaliacao().compareTo(this.notaAvaliacao);
     }
 
 }

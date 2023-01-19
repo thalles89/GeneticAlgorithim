@@ -1,5 +1,21 @@
+import algoritmo.Executar;
+import jgap.Application;
+import org.jgap.InvalidConfigurationException;
+
+import java.sql.SQLException;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        try {
+            if("proprio".equals(args[0])){
+                Application.main(args);
+            }else{
+                Executar.main(args);
+            }
+        } catch (ClassNotFoundException |
+                 SQLException |
+                 InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
