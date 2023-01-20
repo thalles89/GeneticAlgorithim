@@ -36,7 +36,6 @@ public class Application {
             }
         }
         /*Graphic generation*/
-
         Grafico g = new Grafico("Algoritmo genético", "Evolução das soluções", ag.getBestChromosomes());
         g.pack();
         RefineryUtilities.centerFrameOnScreen(g);

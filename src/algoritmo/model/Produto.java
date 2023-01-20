@@ -21,24 +21,12 @@ public class Produto {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
     public Double getVolume() {
         return volume;
     }
 
-    public void setVolume(Double volume) {
-        this.volume = volume;
+    public Double getValor() {
+        return valor;
     }
 
 }

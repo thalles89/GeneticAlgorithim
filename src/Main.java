@@ -1,4 +1,3 @@
-import algoritmo.Executar;
 import jgap.Application;
 import org.jgap.InvalidConfigurationException;
 

@@ -18,7 +18,7 @@ public class Grafico extends ApplicationFrame {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private List<Chromosome> melhoresCromossomos = new ArrayList<Chromosome>();
+    private List<Chromosome> melhoresCromossomos;
 
     public Grafico(String title, String tituloGrafico, List<Chromosome> melhores) {
         super(title);
@@ -28,6 +28,7 @@ public class Grafico extends ApplicationFrame {
         ChartPanel janela = new ChartPanel(graficoDeLinha);
         janela.setPreferredSize(new Dimension(800, 600));
         setContentPane(janela);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private DefaultCategoryDataset carregaDados() {
