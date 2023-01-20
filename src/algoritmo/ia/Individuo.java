@@ -18,8 +18,8 @@ public class Individuo implements Comparable<Individuo> {
      * 4 listar melhores individuos
      */
 
-    private List<Double> espacos = new ArrayList<>();
-    private List<Double> valores = new ArrayList<>();
+    private final List<Double> espacos;
+    private final List<Double> valores;
     private List<String> cromossomo = new ArrayList<>(); // aqui estara contida a solucao
     private final Double limiteEspaco;
     private Double notaAvaliacao;

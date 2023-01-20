@@ -7,14 +7,12 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         try {
-            if("proprio".equals(args[0])){
+//            if("proprio".equals(args[0])){
                 Application.main(args);
-            }else{
-                Executar.main(args);
-            }
-        } catch (ClassNotFoundException |
-                 SQLException |
-                 InvalidConfigurationException e) {
+//            }else{
+//                Executar.main(args);
+//            }
+        } catch (InvalidConfigurationException e) {
             throw new RuntimeException(e);
         }
     }

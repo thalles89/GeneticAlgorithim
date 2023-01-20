@@ -8,11 +8,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class AlgoritmoGenetico {
 
-    private int tamanhoPopulacao;
+    private final int tamanhoPopulacao;
     private List<Individuo> populacao = new ArrayList<>();
-    private int geracao;
     private Individuo melhorSolucao;
-    private List<Individuo> melhoresCromossomos = new ArrayList<Individuo>();
+    private List<Individuo> melhoresCromossomos = new ArrayList<>();
 
     public AlgoritmoGenetico(int tamanhoPopulacao) {
         this.tamanhoPopulacao = tamanhoPopulacao;
@@ -42,12 +41,11 @@ public class AlgoritmoGenetico {
 
     public int selecionaPai(Double somaAvaliacao) {
 
+        double soma = 0.0;
         int pai = -1;
-        double valorSorteado = Math.random() * somaAvaliacao;
-        Double soma = 0.0;
         int i = 0;
 
-        while (i < this.populacao.size() && soma < valorSorteado) {
+        while (i < this.populacao.size() && soma < (Math.random() * somaAvaliacao)) {
 
             soma += this.populacao.get(i).getNotaAvaliacao();
             pai++;

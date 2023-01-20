@@ -59,7 +59,6 @@ public class Executar {
 
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/genalgor", "root", "root");
         Statement stmt = conn.createStatement();
-        ResultSet result = stmt.executeQuery("SELECT nome, valor, espaco, quantidade FROM produtos");
-        return result;
+        return stmt.executeQuery("SELECT nome, valor, espaco, quantidade FROM produtos");
     }
 }
